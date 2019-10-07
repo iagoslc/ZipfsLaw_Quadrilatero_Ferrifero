@@ -38,7 +38,7 @@ plt.style.use('seaborn-darkgrid')
 ####  Parameters
 
 cutoff = 4   ## Quadrilatero Ferrífero - Cutoff estimated by Kolmogorov-Smirnov’s distance
- (see the paper for more details)
+             ##(see the paper for more details)
 
 value = [8.78,70.58,168.62,174.80,8.97,13.26,0.71,38.53,5.28,332.02,35.08,67.11,56.80] # (Lobato et al., 2016)
 
