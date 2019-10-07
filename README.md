@@ -139,7 +139,9 @@ values_reserves = value[0]*rank_reserves**(-1.01)
 ```
 
     Comparison between the power-law and alternative distributions for the gold deposits
-	of the Quadrilátero Ferrífero - Table 2 
+	of the Quadrilátero Ferrífero
+	
+	**Table 2**	
     
     Exponential (R) = 0.21  p = 0.90
     
@@ -149,12 +151,6 @@ values_reserves = value[0]*rank_reserves**(-1.01)
     
     Lognormal positive (R) = -0.20  p = 0.71
     
-    
-
-    Calculating best minimal value for power law fit
-    Assuming nested distributions
-    
-
 
 Minimum Value (X_min) = 35.08 
 
@@ -162,10 +158,10 @@ Minimum Value (X_min) = 35.08
 
 ```python
 from IPython.core.display import Image 
-print('Figure 1 – Simplified geological map of the Quadrilátero Ferrífero Metallogenetic Province, '
-      'with emphasis on the Rio das Velhas Supergroup (greenish tones) and the Minas Supergroup (brown tons). '
-      'The mines listed in this work are represented by yellow filled circles. The black dots represent the other '
-      'known occurrences and small mine sites.\n\n')
+print('Figure 1 – Simplified geological map of the Quadrilátero Ferrífero Metallogenetic Province,'
+      'with emphasis on the Rio das Velhas Supergroup (greenish tones) and the Minas Supergroup (brown tons).'
+      'The mines listed in this work are represented by yellow filled circles. The black dots represent the '
+      'other known occurrences and small mine sites.\n\n')
 Image(filename='Figure_1_QF_max.jpg')
 ```
 
@@ -307,19 +303,22 @@ print('Comparison between the power-law and alternative distributions for the go
      'deposits of the Quadrilátero Ferrífero. Table 3' )
 test_distributions(new_reserves)
 display(Latex('$x_{min} = %i $' % int(results.xmin)))
-print('Figure 4 and 5: Left (Figure 4) - Kolmogorov-Smirnov’s distance for the known deposits of Quadrilátero Ferrífero. '
-'The minimum of the function (dashed vertical blue line) stands at rank 8 (or x_min=35.08). Right (Figure 5a)- '
-'Kolmogorov-Smirnov’s distance for the known deposits aggregated with Zipf’s estimated deposits until '
-'a) the smallest deposit (Itabira; 0.71 t)')
+print('Figure 4 and 5: Left (Figure 4) - Kolmogorov-Smirnov’s distance for the known deposits of '
+      ' Quadrilátero Ferrífero. The minimum of the function (dashed vertical blue line) stands at 
+	  rank 8 (or x_min=35.08). Right (Figure 5a)- '
+      'Kolmogorov-Smirnov’s distance for the known deposits aggregated with Zipf’s estimated '
+      'deposits until a) the smallest deposit (Itabira; 0.71 t)')
 
-print('\n\nObservation -  Figure 5b to 0.01 t takes a couple hours to run, therefore we decide not to include in this notebook, '
-'however if you would like to run change the value of variable ct in this cell to 0.01.)')
-
+print('\n\nObservation -  Figure 5b to 0.01 t takes a couple hours to run, therefore we decide not '
+	  'to include in this notebook, however if you would like to run change the value of variable
+       ct in this cell to 0.01.)')
 ```
 
 
-    Comparison between the power-law and alternative distributions for the gold deposits of the Quadrilátero Ferrífero.
-	Table 3
+    Comparison between the power-law and alternative distributions for the gold deposits of 
+	the Quadrilátero Ferrífero.
+	
+	**Table 3**
     
     Exponential (R) = 389.48  p = 0.00
 
@@ -341,8 +340,8 @@ X_min = 4
 	until a) the smallest deposit (Itabira; 0.71 t)
     
     
-    Observation -  Figure 5b to 0.01 t takes a couple hours to run, therefore we decide not to include in this notebook,
-	however if you would like to run change the value of variable ct in this cell to 0.01.)
+    Observation -  Figure 5b to 0.01 t takes a couple hours to run, therefore we decide not to include in this 
+	notebook, however if you would like to run change the value of variable ct in this cell to 0.01.)
     
 
 
@@ -385,9 +384,9 @@ ax1.yaxis.set_tick_params(labelsize = 16)
 
 
 textstr_2 = 'Total missing endowment = %i t \n\n %i deposits > 8 t (%i t)\n\n %i deposits > 40 t (%i t)' % 
-            (int(sum(values_reserves)),len(values_reserves[values_reserves > 8]),
-			int(sum(values_reserves[values_reserves > 8])),len(values_reserves[values_reserves > 40]),
-			int(sum(values_reserves[values_reserves > 40])))
+        (int(sum(values_reserves)),len(values_reserves[values_reserves > 8]),
+		int(sum(values_reserves[values_reserves > 8])),len(values_reserves[values_reserves > 40]),
+		int(sum(values_reserves[values_reserves > 40])))
 
 ax1.text(0.80, 0.4, textstr_2, transform=ax1.transAxes, fontsize=20, verticalalignment='top', 
          bbox=props,horizontalalignment='center')
