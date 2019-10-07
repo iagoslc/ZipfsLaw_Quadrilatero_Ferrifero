@@ -152,7 +152,7 @@ values_reserves = value[0]*rank_reserves**(-1.01)
     Lognormal positive (R) = -0.20  p = 0.71
     
 
-Minimum Value (X_min) = 35.08 
+Minimum Value (X<sub>min</sub>) = 35.08 
 
 
 
@@ -331,7 +331,7 @@ print('\n\nObservation -  Figure 5b to 0.01 t takes a couple hours to run, there
     
 
 
-X_min = 4 
+X<sub>min</sub> = 4 
 
 
     Figure 4 and 5: Left (Figure 4) - Kolmogorov-Smirnov’s distance for the known deposits of Quadrilátero Ferrífero.
