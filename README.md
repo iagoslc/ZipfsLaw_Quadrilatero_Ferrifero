@@ -1,17 +1,17 @@
 
 # Gold endowment of Quadrilátero Ferrífero Province through rank-size statistical analysis
 
-Iago Costa*
-CPRM - Geological Survey of Brazil
-*iago.costa@cprm.gov.br
+Iago Costa
+*CPRM - Geological Survey of Brazil*
+iago.costa@cprm.gov.br
 
 Guilherme Silva*
-CPRM - Geological Survey of Brazil
-*guilherme.ferreira@cprm.gov.br
+*CPRM - Geological Survey of Brazil*
+guilherme.ferreira@cprm.gov.br
 
-Marcos Ferreia*
-CPRM - Geological Survey of Brazil
-*marcos.ferreira@cprm.gov.br
+Marcos Ferreia
+*CPRM - Geological Survey of Brazil*
+marcos.ferreira@cprm.gov.br
 
 This is an executable version of a paper send to Journal of the Geological Survey of Brazil. This notebooks contains the code to generate the figures of the paper which was send to review.
 
