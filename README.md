@@ -5,7 +5,7 @@ Iago Costa
 *CPRM - Geological Survey of Brazil*
 iago.costa@cprm.gov.br
 
-Guilherme Silva*
+Guilherme Silva
 *CPRM - Geological Survey of Brazil*
 guilherme.ferreira@cprm.gov.br
 
