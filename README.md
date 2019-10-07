@@ -172,7 +172,7 @@ Image(filename='Figure_1_QF_max.jpg')
     
 
 
-![jpeg](output_5_1.jpeg)
+![jpeg](figures/output_5_1.jpeg)
 
 
 
@@ -256,7 +256,7 @@ plt.tight_layout()
     
 
 
-![png](output_6_1.png)
+![png](figures/output_6_1.png)
 
 
 
@@ -345,7 +345,7 @@ X_min = 4
     
 
 
-![png](output_7_6.png)
+![png](figures/output_7_6.png)
 
 
 
@@ -407,5 +407,5 @@ plt.tight_layout()
     
 
 
-![png](output_8_1.png)
+![png](figures/output_8_1.png)
 
