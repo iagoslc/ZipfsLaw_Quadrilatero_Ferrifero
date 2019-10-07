@@ -34,7 +34,17 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 plt.style.use('seaborn-darkgrid')
 
 ```
+```python
+####  Parameters
 
+cutoff = 4   ## Quadrilatero Ferrífero - Cutoff estimated by Kolmogorov-Smirnov’s distance
+ (see the paper for more details)
+
+value = [8.78,70.58,168.62,174.80,8.97,13.26,0.71,38.53,5.28,332.02,35.08,67.11,56.80] # (Lobato et al., 2016)
+
+#Lobato, L.M., da Costa, M.A., Hagemann, S.G., Martins, R., 2016. 
+#Ouro no Brasil: principais depósitos, produção e perspectivas. Recur. Minerais no Bras. 46.
+```
 
 ```python
 # Functions 
@@ -100,19 +110,6 @@ def zipf_fill(value,cutoff):
 
 ```
 
-
-```python
-####  Parameters
-
-cutoff = 4   ## Quadrilatero Ferrífero - Cutoff estimated by Kolmogorov-Smirnov’s distance (see the paper for more details)
-
-value = [8.78,70.58,168.62,174.80,8.97,13.26,0.71,38.53,5.28,332.02,35.08,67.11,56.80] # Values modified from Lobato et al., 2016)
-
-#Lobato, L.M., da Costa, M.A., Hagemann, S.G., Martins, R., 2016. 
-#Ouro no Brasil: principais depósitos, produção e perspectivas. Recur. Minerais no Bras. 46.
-```
-
-
 ```python
 print('Comparison between the power-law and alternative distributions for the gold '
 'deposits of the Quadrilátero Ferrífero - Table 2 ')
@@ -141,7 +138,8 @@ values_reserves = value[0]*rank_reserves**(-1.01)
 
 ```
 
-    Comparison between the power-law and alternative distributions for the gold deposits of the Quadrilátero Ferrífero - Table 2 
+    Comparison between the power-law and alternative distributions for the gold deposits
+	of the Quadrilátero Ferrífero - Table 2 
     
     Exponential (R) = 0.21  p = 0.90
     
@@ -158,7 +156,7 @@ values_reserves = value[0]*rank_reserves**(-1.01)
     
 
 
-Minimum Value $(x_{min}) = 35.08 $
+Minimum Value (X_min) = 35.08 
 
 
 
@@ -171,12 +169,11 @@ print('Figure 1 – Simplified geological map of the Quadrilátero Ferrífero Me
 Image(filename='Figure_1_QF_max.jpg')
 ```
 
-    Figure 1 – Simplified geological map of the Quadrilátero Ferrífero Metallogenetic Province, with emphasis on the Rio das Velhas Supergroup (greenish tones) and the Minas Supergroup (brown tons). The mines listed in this work are represented by yellow filled circles. The black dots represent the other known occurrences and small mine sites.
+    Figure 1 – Simplified geological map of the Quadrilátero Ferrífero Metallogenetic Province, with emphasis
+	on the Rio das Velhas Supergroup (greenish tones) and the Minas Supergroup (brown tons). The mines listed
+	in this work are represented by yellow filled circles. The black dots represent the other known occurrences
+	and small mine sites.
     
-    
-    
-
-
 
 
 ![jpeg](output_5_1.jpeg)
@@ -188,7 +185,8 @@ Image(filename='Figure_1_QF_max.jpg')
 print('Figure 3 - Left - Descending order rank of known gold deposits of Quadrilátero Ferrífero'
       'with the power-law regression curve (red line) and the Zipf’s curve (black line). '
      ' Right - Log-log rank-size plot showing the known gold deposits, the power-law regression curve'
-      '(red), and the Zipf’s curve (black). The observed maximum rank is shown in a dashed vertical blue line (rank 8).')
+      '(red), and the Zipf’s curve (black). The observed maximum rank is shown in a dashed vertical 
+	  blue line (rank 8).')
 
 # Calculate fit curve
 popt, pcov = curve_fit(lambda fx,a,b: a*fx**-b,  rank,  value)
@@ -255,7 +253,10 @@ plt.tight_layout()
 
 ```
 
-    Figure 3 - Left - Descending order rank of known gold deposits of Quadrilátero Ferríferowith the power-law regression curve (red line) and the Zipf’s curve (black line).  Right - Log-log rank-size plot showing the known gold deposits, the power-law regression curve(red), and the Zipf’s curve (black). The observed maximum rank is shown in a dashed vertical blue line (rank 8).
+    Figure 3 - Left - Descending order rank of known gold deposits of Quadrilátero Ferrífero with the power-law
+	regression curve (red line) and the Zipf’s curve (black line).  Right - Log-log rank-size plot showing the 
+	known gold deposits, the power-law regression curve(red), and the Zipf’s curve (black). The observed maximum
+	rank is shown in a dashed vertical blue line (rank 8).
     
 
 
@@ -270,7 +271,8 @@ props = dict(boxstyle='round', facecolor='white', alpha=0.7)
 
 ax1 = fig.add_subplot(121)
 results = powerlaw.Fit(value)
-ax1.plot(results.xmins, results.Ds,marker='s',linewidth=2,markersize=8,markeredgecolor='k',markerfacecolor='white',markeredgewidth=1.2,label='Known Deposits')
+ax1.plot(results.xmins, results.Ds,marker='s',linewidth=2,markersize=8,markeredgecolor='k',markerfacecolor='white',
+         markeredgewidth=1.2,label='Known Deposits')
 ax1.axvline(x=results.xmin,linewidth=2,color='blue',linestyle='dashed')
 ax1.set_xlim(180,-5)
 ax1.set_ylim(0,.5)
@@ -288,7 +290,8 @@ new_reserves,rank_new,value_new = zipf_fill(value,cutoff=ct)
 ax2 = fig.add_subplot(122)
 
 results = powerlaw.Fit(new_reserves,discrete=True)
-ax2.plot(results.xmins, results.Ds,marker='s',linewidth=2,markersize=8,markeredgecolor='k',markerfacecolor='white',markeredgewidth=1.2,label='Known Deposits with Zipfs estimated deposits (>0.71 t)')
+ax2.plot(results.xmins, results.Ds,marker='s',linewidth=2,markersize=8,markeredgecolor='k',markerfacecolor='white',
+         markeredgewidth=1.2,label='Known Deposits with Zipfs estimated deposits (>0.71 t)')
 ax2.axvline(x=results.xmin,linewidth=2,color='blue',linestyle='dashed')
 ax2.set_xlim(180,-5)
 ax2.set_ylim(0,.5)
@@ -314,19 +317,11 @@ print('\n\nObservation -  Figure 5b to 0.01 t takes a couple hours to run, there
 
 ```
 
-    Calculating best minimal value for power law fit
-    Calculating best minimal value for power law fit
-    
 
-    Comparison between the power-law and alternative distributions for the gold deposits of the Quadrilátero Ferrífero. Table 3
+    Comparison between the power-law and alternative distributions for the gold deposits of the Quadrilátero Ferrífero.
+	Table 3
     
     Exponential (R) = 389.48  p = 0.00
-    
-    
-
-    Calculating best minimal value for power law fit
-    Assuming nested distributions
-    
 
     Truncated Power-Law (R) = -0.23  p = 0.49
     
@@ -337,13 +332,17 @@ print('\n\nObservation -  Figure 5b to 0.01 t takes a couple hours to run, there
     
 
 
-$x_{min} = 4 $
+X_min = 4 
 
 
-    Figure 4 and 5: Left (Figure 4) - Kolmogorov-Smirnov’s distance for the known deposits of Quadrilátero Ferrífero. The minimum of the function (dashed vertical blue line) stands at rank 8 (or x_min=35.08). Right (Figure 5a)- Kolmogorov-Smirnov’s distance for the known deposits aggregated with Zipf’s estimated deposits until a) the smallest deposit (Itabira; 0.71 t)
+    Figure 4 and 5: Left (Figure 4) - Kolmogorov-Smirnov’s distance for the known deposits of Quadrilátero Ferrífero.
+	The minimum of the function (dashed vertical blue line) stands at rank 8 (or x_min=35.08). 
+	Right (Figure 5a)- Kolmogorov-Smirnov’s distance for the known deposits aggregated with Zipf’s estimated deposits 
+	until a) the smallest deposit (Itabira; 0.71 t)
     
     
-    Observation -  Figure 5b to 0.01 t takes a couple hours to run, therefore we decide not to include in this notebook, however if you would like to run change the value of variable ct in this cell to 0.01.)
+    Observation -  Figure 5b to 0.01 t takes a couple hours to run, therefore we decide not to include in this notebook,
+	however if you would like to run change the value of variable ct in this cell to 0.01.)
     
 
 
@@ -385,9 +384,13 @@ ax1.xaxis.set_tick_params(labelsize = 16)
 ax1.yaxis.set_tick_params(labelsize = 16)
 
 
-textstr_2 = 'Total missing endowment = %i t \n\n %i deposits > 8 t (%i t)\n\n %i deposits > 40 t (%i t)' % (int(sum(values_reserves)),len(values_reserves[values_reserves > 8]),int(sum(values_reserves[values_reserves > 8])),len(values_reserves[values_reserves > 40]),int(sum(values_reserves[values_reserves > 40])))
+textstr_2 = 'Total missing endowment = %i t \n\n %i deposits > 8 t (%i t)\n\n %i deposits > 40 t (%i t)' % 
+            (int(sum(values_reserves)),len(values_reserves[values_reserves > 8]),
+			int(sum(values_reserves[values_reserves > 8])),len(values_reserves[values_reserves > 40]),
+			int(sum(values_reserves[values_reserves > 40])))
 
-ax1.text(0.80, 0.4, textstr_2, transform=ax1.transAxes, fontsize=20, verticalalignment='top', bbox=props,horizontalalignment='center')
+ax1.text(0.80, 0.4, textstr_2, transform=ax1.transAxes, fontsize=20, verticalalignment='top', 
+         bbox=props,horizontalalignment='center')
 
 textstr = '\n'.join((
         'Power-Law Regression',
@@ -400,7 +403,8 @@ ax1.text(0.1, 0.85, textstr,transform=ax1.transAxes, fontsize=16, verticalalignm
 plt.tight_layout()
 ```
 
-    Figure 6 - Known gold deposits (blue bars) fitted to the Zipf’s curve, and the rank gaps filled with undiscovered deposits (red bars) with endowment larger than 4 t.
+    Figure 6 - Known gold deposits (blue bars) fitted to the Zipf’s curve, and the rank gaps filled with undiscovered
+	deposits (red bars) with endowment larger than 4 t.
     
 
 
