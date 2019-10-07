@@ -9,7 +9,7 @@ Guilherme Silva
 *CPRM - Geological Survey of Brazil*
 guilherme.ferreira@cprm.gov.br
 
-Marcos Ferreia
+Marcos Ferreira
 *CPRM - Geological Survey of Brazil*
 marcos.ferreira@cprm.gov.br
 
