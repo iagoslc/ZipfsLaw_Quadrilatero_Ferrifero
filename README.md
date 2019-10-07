@@ -304,13 +304,13 @@ print('Comparison between the power-law and alternative distributions for the go
 test_distributions(new_reserves)
 display(Latex('$x_{min} = %i $' % int(results.xmin)))
 print('Figure 4 and 5: Left (Figure 4) - Kolmogorov-Smirnov’s distance for the known deposits of '
-      ' Quadrilátero Ferrífero. The minimum of the function (dashed vertical blue line) stands at 
-	  rank 8 (or x_min=35.08). Right (Figure 5a)- '
+      'Quadrilátero Ferrífero. The minimum of the function (dashed vertical blue line) stands at '
+	  'rank 8 (or x_min=35.08). Right (Figure 5a)- '
       'Kolmogorov-Smirnov’s distance for the known deposits aggregated with Zipf’s estimated '
       'deposits until a) the smallest deposit (Itabira; 0.71 t)')
 
 print('\n\nObservation -  Figure 5b to 0.01 t takes a couple hours to run, therefore we decide not '
-	  'to include in this notebook, however if you would like to run change the value of variable
+	  'to include in this notebook, however if you would like to run change the value of variable '
        ct in this cell to 0.01.)')
 ```
 
