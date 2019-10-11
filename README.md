@@ -1,17 +1,17 @@
 
 # Application of Zipf’s law for gold endowment assessment of Quadrilátero Ferrífero Province
 
-Iago Costa*
+Iago Costa
 CPRM - Geological Survey of Brazil
-*iago.costa@cprm.gov.br
+iago.costa@cprm.gov.br
 
-Guilherme Silva*
+Guilherme Silva
 CPRM - Geological Survey of Brazil
-*guilherme.ferreira@cprm.gov.br
+guilherme.ferreira@cprm.gov.br
 
-Marcos Ferreira*
+Marcos Ferreira
 CPRM - Geological Survey of Brazil
-*marcos.ferreira@cprm.gov.br
+marcos.ferreira@cprm.gov.br
 
 This is an executable version of a paper send to Journal of the Geological Survey of Brazil. This notebooks contains the code to generate the figures of the paper which was send to review.
 
