@@ -557,5 +557,5 @@ plt.tight_layout()
     
 
 
-![png](output_19_1.png)
+![png](figures/output_19_1.png)
 
