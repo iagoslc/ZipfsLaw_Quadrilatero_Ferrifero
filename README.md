@@ -126,24 +126,7 @@ print('Comparison between the power-law and alternative distributions for the go
 xmin = test_distributions(value)
 #display(Latex('Minimum Value $(x_{min}) = %.2f $' % (find_nearest(value,xmin))))
 
-rank = np.arange(1,len(value)+1)
-value = np.sort(value)[::-1]
 
-max_rank = int(round((value[0]/cutoff)**(1/1.00)))
-
-
-# Zipfs law
-k = 1.00
-x_zipf = np.arange(1., len(rank))
-C = value[0]
-y_zipf = C*x_zipf**(-k)
-
-all_reserves,rank_new,value_new = zipf_fill(value,cutoff)
-rank_reserves =  np.delete(np.arange(0,max_rank), rank_new)[1:]
-values_reserves = value[0]*rank_reserves**(-1.01)
-
-popt, pcov = curve_fit(lambda fx,a,b: a*fx**-b,  rank,  value)
-power_y = popt[0]*rank**-popt[1]
 ```
 
     Comparison between the power-law and alternative distributions for the gold deposits of 
@@ -158,9 +141,6 @@ power_y = popt[0]*rank**-popt[1]
     Lognormal positive (R) = -0.20  p = 0.71
     
     
-
-    Calculating best minimal value for power law fit
-    Assuming nested distributions
     
 
 ## Figure 1 
@@ -198,6 +178,26 @@ print('Figure 2 - left) Descending order rank of known gold deposits of Quadril�
     (red), and the Zipf’s curve (black). The observed maximum rank is shown in a dashed\
     vertical blue line (rank 8).')
 
+rank = np.arange(1,len(value)+1)
+value = np.sort(value)[::-1]
+
+max_rank = int(round((value[0]/cutoff)**(1/1.00)))
+
+
+# Zipfs law
+k = 1.00
+x_zipf = np.arange(1., len(rank))
+C = value[0]
+y_zipf = C*x_zipf**(-k)
+
+all_reserves,rank_new,value_new = zipf_fill(value,cutoff)
+rank_reserves =  np.delete(np.arange(0,max_rank), rank_new)[1:]
+values_reserves = value[0]*rank_reserves**(-1.01)
+
+popt, pcov = curve_fit(lambda fx,a,b: a*fx**-b,  rank,  value)
+power_y = popt[0]*rank**-popt[1]
+
+######################################################### AXIS 1 ######################################
 fig = plt.figure(figsize=(18,8))
 props = dict(boxstyle='round', facecolor='white', alpha=0.7)
 
@@ -319,10 +319,7 @@ plt.tight_layout(w_pad=1.4)
     the Complementary Cumulative Distribution Function (CCDF) and the gold deposits.  The dashed red line shows 
     the power-law regression using the Maximum Likelihood Estimator (MLE) with k=0.89.
     
-
-    Calculating best minimal value for power law fit
     
-
 
 ![png](figures/output_13_2.png)
 
@@ -341,12 +338,6 @@ test_distributions(new_reserves)
     Quadrilátero Ferrífero adjusted with Zipf’s law. 
     
     Exponential (R) = 389.48  p = 0.00
-    
-    
-
-    Calculating best minimal value for power law fit
-    Assuming nested distributions
-    
 
     Truncated Power-Law (R) = -0.23  p = 0.49
     
@@ -354,13 +345,6 @@ test_distributions(new_reserves)
     
     Lognormal positive (R) = 47.63  p = 0.00
     
-    
-
-
-
-
-    0.6685812546018854
-
 
 
 ## Figure 4
@@ -420,9 +404,6 @@ plt.tight_layout()
     deposits. The minimum of the function (dashed vertical blue line) stands when x_min=4. left)  The log-log
     plot between the Complementary Cumulative Distribution Function (CCDF) and the filled deposits. The dashed
     red line shows the power-law regression using the Maximum Likelihood Estimator  (MLE) with k=0.89.
-    
-
-    Calculating best minimal value for power law fit
     
 
 
@@ -488,6 +469,5 @@ plt.tight_layout()
     Figure 5 - Known gold deposits (blue bars) fitted to the Zipf’s curve, and the rank gaps filled with 
     undiscovered deposits (red bars) with endowment larger than 4 t.
     
-
 
 ![png](figures/output_19_1.png)
