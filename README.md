@@ -112,9 +112,11 @@ def zipf_fill(value,cutoff):
 ```python
 ####  Parameters
 
-cutoff = 4   ## Quadrilatero Ferrífero - Cutoff estimated by Kolmogorov-Smirnov’s distance (see the paper for more details)
+cutoff = 4   ## Quadrilatero Ferrífero - Cutoff estimated by Kolmogorov-Smirnov’s distance 
+(see the paper for more details)
 
-value = [8.78,70.58,168.62,174.80,8.97,13.26,0.71,38.53,5.28,332.02,35.08,67.11,56.80] # Values modified from Lobato et al., 2016)
+value = [8.78,70.58,168.62,174.80,8.97,13.26,0.71,38.53,5.28,332.02,35.08,67.11,56.80] 
+# Values modified from Lobato et al., 2016)
 
 #Lobato, L.M., da Costa, M.A., Hagemann, S.G., Martins, R., 2016. 
 #       Ouro no Brasil: principais depósitos, produção e perspectivas. Recur. Minerais no Bras. 46.
@@ -144,7 +146,8 @@ popt, pcov = curve_fit(lambda fx,a,b: a*fx**-b,  rank,  value)
 power_y = popt[0]*rank**-popt[1]
 ```
 
-    Comparison between the power-law and alternative distributions for the gold deposits of the Quadrilátero Ferrífero. 
+    Comparison between the power-law and alternative distributions for the gold deposits of 
+    the Quadrilátero Ferrífero. 
     
     Exponential (R) = 0.21  p = 0.90
     
@@ -175,13 +178,11 @@ print('Figure 1 –  Simplified geological map of the Quadrilátero Ferrífero P
 Image(filename='Figure_1.jpg')
 ```
 
-    Figure 1 –  Simplified geological map of the Quadrilátero Ferrífero Province, with emphasis on the Rio das Velhas Supergroup (greenish tones) and the Minas Supergroup (brown tons).  Yellow filled circles represent the mines listed in this work. The black dots represent the other known occurrences and small mine sites (modified from Pinto and Silva, 2014). 
+    Figure 1 –  Simplified geological map of the Quadrilátero Ferrífero Province, with emphasis on the 
+    Rio das Velhas Supergroup (greenish tones) and the Minas Supergroup (brown tons).  Yellow filled 
+    circles represent the mines listed in this work. The black dots represent the other known occurrences 
+    and small mine sites (modified from Pinto and Silva, 2014). 
     
-    
-    
-
-
-
 
 ![jpeg](figures/output_8_1.jpeg)
 
@@ -250,99 +251,12 @@ ax2.axes.set_yticklabels([0.001,0.1,1,10,100,1000])
 plt.tight_layout()
 ```
 
-    Figure 2 - left) Descending order rank of known gold deposits of Quadrilátero Ferrífero with the power-law regression curve (red line) and the Zipf’s curve (black line). right)    Log-log rank-size plot showing the known gold deposits, the power-law regression curve    (red), and the Zipf’s curve (black). The observed maximum rank is shown in a dashed    vertical blue line (rank 8).
-    
-
+    Figure 2 - left) Descending order rank of known gold deposits of Quadrilátero Ferrífero with the power-law 
+    regression curve (red line) and the Zipf’s curve (black line). right)    Log-log rank-size plot showing the 
+    known gold deposits, the power-law regression curve    (red), and the Zipf’s curve (black). The observed 
+    maximum rank is shown in a dashed vertical blue line (rank 8).
 
 ![png](figures/output_10_1.png)
-
-
-
-```python
-ct = 0.71
-fig = plt.figure(figsize=(18,8))
-props = dict(boxstyle='round', facecolor='white', alpha=0.7)
-
-ax1 = fig.add_subplot(121)
-results = powerlaw.Fit(value)
-ax1.plot(results.xmins, results.Ds,marker='s',linewidth=2,markersize=8,markeredgecolor='k',markerfacecolor='white',markeredgewidth=1.2,label='Known Deposits')
-ax1.axvline(x=results.xmin,linewidth=2,color='blue',linestyle='dashed')
-ax1.set_xlim(180,-5)
-ax1.set_ylim(0,.5)
-ax1.xaxis.set_tick_params(labelsize = 16)
-ax1.yaxis.set_tick_params(labelsize = 16)
-ax1.set_ylabel(r'$Kolmogorov-Smirnov distance\ (D)$',fontsize=16)
-ax1.set_xlabel(r'$x_{min}$',fontsize=18)
-ax1.legend(fontsize=16,frameon=True)
-
-for i, txt in enumerate(np.sort(rank)[::-1][1:]+1):
-    ax1.annotate(txt, (results.xmins[i]+0.01, results.Ds[i]+0.01),fontsize=16)
-
-new_reserves,rank_new,value_new = zipf_fill(value,cutoff=ct)
-
-ax2 = fig.add_subplot(122)
-
-results = powerlaw.Fit(new_reserves,discrete=True)
-ax2.plot(results.xmins, results.Ds,marker='s',linewidth=2,markersize=8,markeredgecolor='k',markerfacecolor='white',markeredgewidth=1.2,label='Known Deposits with Zipfs estimated deposits (>0.71 t)')
-ax2.axvline(x=results.xmin,linewidth=2,color='blue',linestyle='dashed')
-ax2.set_xlim(180,-5)
-ax2.set_ylim(0,.5)
-ax2.xaxis.set_tick_params(labelsize = 16)
-ax2.yaxis.set_tick_params(labelsize = 16)
-ax2.set_ylabel(r'$\ $',fontsize=18)
-ax2.set_xlabel(r'$x_{min}$',fontsize=18)
-ax2.legend(fontsize=16,frameon=True)
-plt.tight_layout()
-
-
-print('Comparison between the power-law and alternative distributions for the gold '
-     'deposits of the Quadrilátero Ferrífero. Table 3' )
-test_distributions(new_reserves)
-display(Latex('$x_{min} = %i $' % int(results.xmin)))
-print('Figure 4 and 5: Left (Figure 4) - Kolmogorov-Smirnov’s distance for the known deposits of Quadrilátero Ferrífero. '
-'The minimum of the function (dashed vertical blue line) stands at rank 8 (or x_min=35.08). Right (Figure 5a)- '
-'Kolmogorov-Smirnov’s distance for the known deposits aggregated with Zipf’s estimated deposits until '
-'a) the smallest deposit (Itabira; 0.71 t)')
-
-print('\n\nObservation -  Figure 5b to 0.01 t takes a couple hours to run, therefore we decide not to include in this notebook, '
-'however if you would like to run change the value of variable ct in this cell to 0.01.)')
-
-```
-
-    Calculating best minimal value for power law fit
-    Calculating best minimal value for power law fit
-    
-
-    Comparison between the power-law and alternative distributions for the gold deposits of the Quadrilátero Ferrífero. Table 3
-    
-    Exponential (R) = 389.48  p = 0.00
-    
-    
-
-    Calculating best minimal value for power law fit
-    Assuming nested distributions
-    
-
-    Truncated Power-Law (R) = -0.23  p = 0.49
-    
-    Stretched Exponential (R) = 2.33  p = 0.32
-    
-    Lognormal positive (R) = 47.63  p = 0.00
-    
-    
-
-
-$x_{min} = 4 $
-
-
-    Figure 4 and 5: Left (Figure 4) - Kolmogorov-Smirnov’s distance for the known deposits of Quadrilátero Ferrífero. The minimum of the function (dashed vertical blue line) stands at rank 8 (or x_min=35.08). Right (Figure 5a)- Kolmogorov-Smirnov’s distance for the known deposits aggregated with Zipf’s estimated deposits until a) the smallest deposit (Itabira; 0.71 t)
-    
-    
-    Observation -  Figure 5b to 0.01 t takes a couple hours to run, therefore we decide not to include in this notebook, however if you would like to run change the value of variable ct in this cell to 0.01.)
-    
-
-
-![png](figures/output_11_6.png)
 
 
 ## Figure 3
@@ -361,7 +275,8 @@ props = dict(boxstyle='round', facecolor='white', alpha=0.7)
 
 ax1 = fig.add_subplot(121)
 results = powerlaw.Fit(value)
-ax1.plot(results.xmins, results.Ds,marker='s',linewidth=2,markersize=8,markeredgecolor='k',markerfacecolor='white',markeredgewidth=1.2,label='Known Deposits')
+ax1.plot(results.xmins, results.Ds,marker='s',linewidth=2,markersize=8,markeredgecolor='k',
+markerfacecolor='white',markeredgewidth=1.2,label='Known Deposits')
 ax1.axvline(x=results.xmin,linewidth=2,color='blue',linestyle='dashed')
 ax1.set_xlim(-5,180)
 ax1.set_ylim(0,.5)
@@ -380,8 +295,10 @@ ax2 = fig.add_subplot(122)
 
 fit = powerlaw.Fit(value, discrete=True,xmin=min(value))
 
-fit.plot_ccdf(color='m', linewidth=0,marker='d',markersize=8,markeredgecolor='k',label='Known Deposits',ax=ax2)
-fit.power_law.plot_ccdf(color='r', linestyle='--', ax=ax2,label='Power-law Regression (MLE)\nK = %.2f' % (fit.alpha-1))
+fit.plot_ccdf(color='m', linewidth=0,marker='d',markersize=8,markeredgecolor='k',
+label='Known Deposits',ax=ax2)
+fit.power_law.plot_ccdf(color='r', linestyle='--', ax=ax2,
+label='Power-law Regression (MLE)\nK = %.2f' % (fit.alpha-1))
 
 ax2.set_xlabel(r'$Au\ (t)$',fontsize=18)
 ax2.set_ylabel('Complementary Cumulative Distribution Function (CCDF)',fontsize=18)
@@ -397,7 +314,10 @@ ax2.legend(fontsize=16,frameon=True)
 plt.tight_layout(w_pad=1.4)
 ```
 
-    Figure 3 - right) Kolmogorov-Smirnov’s distance for the known deposits of Quadrilátero Ferrífero. The minimum of the function (dashed vertical blue line) stands at rank 8 (or x_min=35.08). left) The log-log plot between the Complementary Cumulative Distribution Function (CCDF) and the gold deposits.  The dashed red line shows the power-law regression using the Maximum Likelihood Estimator (MLE) with k=0.89.
+    Figure 3 - right) Kolmogorov-Smirnov’s distance for the known deposits of Quadrilátero Ferrífero. The minimum
+    of the function (dashed vertical blue line) stands at rank 8 (or x_min=35.08). left) The log-log plot between
+    the Complementary Cumulative Distribution Function (CCDF) and the gold deposits.  The dashed red line shows 
+    the power-law regression using the Maximum Likelihood Estimator (MLE) with k=0.89.
     
 
     Calculating best minimal value for power law fit
@@ -417,7 +337,8 @@ print('Comparison between the power-law and alternative distributions for the go
 test_distributions(new_reserves)
 ```
 
-    Comparison between the power-law and alternative distributions for the gold deposits of the Quadrilátero Ferrífero adjusted with Zipf’s law. 
+    Comparison between the power-law and alternative distributions for the gold deposits of the 
+    Quadrilátero Ferrífero adjusted with Zipf’s law. 
     
     Exponential (R) = 389.48  p = 0.00
     
@@ -459,7 +380,9 @@ fig = plt.figure(figsize=(18,8))
 ax1 = fig.add_subplot(121)
 
 results = powerlaw.Fit(new_reserves,discrete=True)
-ax1.plot(results.xmins, results.Ds,marker='s',linewidth=2,markersize=8,markeredgecolor='k',markerfacecolor='white',markeredgewidth=1.2,label='Known Deposits with Zipfs estimated deposits (>0.71 t)')
+ax1.plot(results.xmins, results.Ds,marker='s',linewidth=2,markersize=8,markeredgecolor='k',
+markerfacecolor='white',markeredgewidth=1.2,
+label='Known Deposits with Zipfs estimated deposits (>0.71 t)')
 ax1.axvline(x=results.xmin,linewidth=2,color='blue',linestyle='dashed')
 ax1.set_xlim(-5,180)
 ax1.set_ylim(0,.5)
@@ -473,8 +396,10 @@ ax1.legend(fontsize=16,frameon=True)
 
 ax2 = fig.add_subplot(122)
 
-results.plot_ccdf(color='m', linewidth=0,marker='d',markersize=8,markeredgecolor='k',label='Known Deposits',ax=ax2)
-results.power_law.plot_ccdf(color='r', linestyle='--', ax=ax2,label='Power-law Regression (MLE)\nK = %.2f' % (results.alpha-1))
+results.plot_ccdf(color='m', linewidth=0,marker='d',markersize=8,
+markeredgecolor='k',label='Known Deposits',ax=ax2)
+results.power_law.plot_ccdf(color='r', linestyle='--', ax=ax2,
+label='Power-law Regression (MLE)\nK = %.2f' % (results.alpha-1))
 
 ax2.set_xlabel(r'$Au\ (t)$',fontsize=18)
 ax2.set_ylabel('Complementary Cumulative Distribution Function (CCDF)',fontsize=18)
@@ -491,7 +416,10 @@ ax2.set_ylim(0.008,1.2)
 plt.tight_layout()
 ```
 
-    Figure 4 - right) Kolmogorov-Smirnov’s distance for the known deposits aggregated with Zipf’s estimated deposits. The minimum of the function (dashed vertical blue line) stands when x_min=4. left)  The log-log plot between the Complementary Cumulative Distribution Function (CCDF) and the filled deposits. The dashed red line shows the power-law regression using the Maximum Likelihood Estimator  (MLE) with k=0.89.
+    Figure 4 - right) Kolmogorov-Smirnov’s distance for the known deposits aggregated with Zipf’s estimated 
+    deposits. The minimum of the function (dashed vertical blue line) stands when x_min=4. left)  The log-log
+    plot between the Complementary Cumulative Distribution Function (CCDF) and the filled deposits. The dashed
+    red line shows the power-law regression using the Maximum Likelihood Estimator  (MLE) with k=0.89.
     
 
     Calculating best minimal value for power law fit
@@ -539,9 +467,13 @@ ax1.set_ylabel(r'$Au\ (t)$',fontsize=18)
 ax1.xaxis.set_tick_params(labelsize = 16)
 ax1.yaxis.set_tick_params(labelsize = 16)
 
-textstr_2 = 'Total missing endowment = %i t \n\n %i deposits > 8 t (%i t)\n\n %i deposits > 40 t (%i t)' % (int(sum(values_reserves)),len(values_reserves[values_reserves > 8]),int(sum(values_reserves[values_reserves > 8])),len(values_reserves[values_reserves > 40]),int(sum(values_reserves[values_reserves > 40])))
+textstr_2 = 'Total missing endowment = %i t \n\n %i deposits > 8 t (%i t)\n\n %i deposits > 40 t (%i t)'
+% (int(sum(values_reserves)),len(values_reserves[values_reserves > 8]),
+int(sum(values_reserves[values_reserves > 8])),len(values_reserves[values_reserves > 40]),
+int(sum(values_reserves[values_reserves > 40])))
 
-ax1.text(0.80, 0.4, textstr_2, transform=ax1.transAxes, fontsize=20, verticalalignment='top', bbox=props,horizontalalignment='center')
+ax1.text(0.80, 0.4, textstr_2, transform=ax1.transAxes, fontsize=20, verticalalignment='top', 
+bbox=props,horizontalalignment='center')
 
 textstr = '\n'.join((
         'Power-Law Regression (MLE)',
@@ -553,9 +485,9 @@ ax1.legend(fontsize=16,frameon=True)
 plt.tight_layout()
 ```
 
-    Figure 5 - Known gold deposits (blue bars) fitted to the Zipf’s curve, and the rank gaps filled with undiscovered deposits (red bars) with endowment larger than 4 t.
+    Figure 5 - Known gold deposits (blue bars) fitted to the Zipf’s curve, and the rank gaps filled with 
+    undiscovered deposits (red bars) with endowment larger than 4 t.
     
 
 
 ![png](figures/output_19_1.png)
-
