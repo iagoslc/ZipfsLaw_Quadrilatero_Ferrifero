@@ -164,7 +164,7 @@ Image(filename='Figure_1.jpg')
     and small mine sites (modified from Pinto and Silva, 2014). 
     
 
-![jpeg](figures/output_8_1.jpeg)
+![jpeg](figures/output_8_1.jpg)
 
 
 
