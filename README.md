@@ -15,7 +15,7 @@ marcos.ferreira@cprm.gov.br
 
 This is an executable version of a paper send to Journal of the Geological Survey of Brazil. This notebooks contains the code to generate the figures of the paper which was send to review.
 
-When the paper is published it could be found [here](https://jgsb.cprm.gov.br/index.php/journal/index).
+When the paper is published it could be found [here](https://jgsb.cprm.gov.br/index.php/journal/article/view/84).
 
 ## Abstract
 
